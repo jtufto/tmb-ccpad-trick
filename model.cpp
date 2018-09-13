@@ -15,8 +15,8 @@ Type objective_function<Type>::operator() ()
   Type nll = 0;
   nll -= sum(dnorm(u, Type(0), sigma, true));
   for (int i=0; i<y.size(); i++) {
-    Type eta = a + b*x(i);
-    if (CppAD::Variable(log_sigma) )
+    Type eta = a + b*x(i); 
+    if (CppAD::Variable(log_sigma) ) // If log_sigma=NA in map argument then don't add random effect to eta
       eta += u(id(i));
     nll -= dbinom(y(i), Type(1), 1/(1+exp(-eta)), true); 
   }
