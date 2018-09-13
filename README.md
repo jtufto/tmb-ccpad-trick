@@ -1,2 +1,2 @@
 # tmb-ccpad-trick
-Minimal logistic regression example showing how to turn random effects on and off in tempate model builder
+Minimal logistic regression example showing a trick for how to turn random effects on and off in tempate model builder.  Works by disconnecting the random effect u from the rest of the model by not adding it to the linear predictor eta.  The random effect u can still be specified as random="u" in the call to MakeADFun and the code adding its density to nll can remain in the cpp-file but it will no longer contributes to the log likelihood since it integrates to one (also when computed via the Laplace approximation) 
